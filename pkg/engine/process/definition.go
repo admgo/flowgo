@@ -3,6 +3,7 @@ package process
 // pkg/engine/process/definition.go
 
 import (
+	"flowgo/pkg/engine/task"
 	"fmt"
 )
 
@@ -22,26 +23,32 @@ type ProcessInstance struct {
 type Engine struct {
 	definitions map[string]ProcessDefinition
 	instances   map[string]ProcessInstance
+	taskManager *task.TaskManager
 }
 
-// NewEngine 创建一个新的流程引擎
+// NewEngine will create a engine
 func NewEngine() *Engine {
 	return &Engine{
 		definitions: make(map[string]ProcessDefinition),
 		instances:   make(map[string]ProcessInstance),
+		taskManager: task.NewTaskManager(),
 	}
 }
 
-// AddDefinition 添加一个新的流程定义
+// AddDefinition add a process definition
 func (e *Engine) AddDefinition(id, name string) {
 	e.definitions[id] = ProcessDefinition{ID: id, Name: name}
 	fmt.Printf("Added process definition: %s\n", name)
 }
 
-// StartInstance 启动一个流程实例
+// StartInstance start a process instance
 func (e *Engine) StartInstance(definitionID string) string {
 	instanceID := fmt.Sprintf("instance-%d", len(e.instances)+1)
 	e.instances[instanceID] = ProcessInstance{ID: instanceID, Status: "running"}
 	fmt.Printf("Started process instance: %s for definition ID: %s\n", instanceID, definitionID)
+
+	// Adding a new task to the instance to demonstrate task management
+	taskID := fmt.Sprintf("task-%d", len(e.instances))
+	e.taskManager.AddTask(taskID, "Sample Task for Instance "+instanceID)
 	return instanceID
 }
