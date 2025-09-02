@@ -1,3 +1,3 @@
-module flowgo
+module github.com/admgo/flowgo
 
 go 1.22
