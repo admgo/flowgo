@@ -1,1 +1,1 @@
-package workspace
+package flowgo
