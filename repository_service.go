@@ -14,16 +14,6 @@ type Deployment struct {
 	CreatedAt time.Time
 }
 
-type ProcessDefinition struct {
-	ID           string
-	Key          string
-	Name         string
-	Version      int
-	Category     string
-	DeploymentID string
-	Suspended    bool
-}
-
 type Model struct {
 	ID       string
 	Name     string
