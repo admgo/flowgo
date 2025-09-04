@@ -1,6 +1,6 @@
-# Flowable ChangeLog
+# Flowgo ChangeLog
 
-## Flowable v0.0.1
+## Flowgo v0.0.1
 
 ### New
 
